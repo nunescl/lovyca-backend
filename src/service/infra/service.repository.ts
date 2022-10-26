@@ -1,7 +1,7 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { DataSource, Repository } from 'typeorm';
 import { ServiceEntity } from '../entities/service.entity';
-import { SaveService } from './service.repository.types';
+import { SaveService, SaveUpdatedService } from './service.repository.types';
 
 @Injectable()
 export class ServiceRepository {
@@ -33,6 +33,19 @@ export class ServiceRepository {
 
   public async getServiceById(id: string): Promise<ServiceEntity> {
     const matches = await this.serviceRepo.findOneBy({ id });
+    return matches;
+  }
+
+  public async updateService(
+    id: string,
+    saveUpdatedService: SaveUpdatedService,
+  ): Promise<ServiceEntity> {
+    this.serviceRepo
+      .createQueryBuilder('updateService')
+      .update(saveUpdatedService)
+      .where({ id })
+      .execute();
+    const matches = await this.getServiceById(id);
     return matches;
   }
 }
