@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ServicesModule } from 'src/service/service.module';
 
 @Module({
   imports: [
@@ -9,11 +10,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       port: 5435,
       username: 'postgres',
       password: 'postgres',
-      database: 'store-management',
+      database: 'lovyca-backend',
       autoLoadEntities: true,
       synchronize: true,
       entities: [__dirname + '/**/**/*.entity{.ts,.js}'],
     }),
+    ServicesModule,
   ],
   controllers: [],
   providers: [],

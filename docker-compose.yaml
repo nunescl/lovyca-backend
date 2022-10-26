@@ -7,7 +7,7 @@ services:
     ports:
       - '5435:5432'
     environment:
-      - POSTGRES_DB=store-management
+      - POSTGRES_DB=lovyca-backend
       - POSTGRES_USERNAME=postgres
       - POSTGRES_PASSWORD=postgres
       # - DB_PORT=5432
