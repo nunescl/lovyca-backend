@@ -48,4 +48,13 @@ export class ServiceRepository {
     const matches = await this.getServiceById(id);
     return matches;
   }
+
+  public async deleteService(id: string): Promise<void> {
+    const result = this.serviceRepo
+      .createQueryBuilder('deleteByID')
+      .delete()
+      .where({ id });
+
+    result.execute();
+  }
 }
