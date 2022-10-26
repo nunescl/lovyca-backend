@@ -1,4 +1,10 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { ServiceCategoryEnum } from './service-category.enum';
 import { ServiceStatusEnum } from './service-status.enum';
 import { UserEntity } from './user.entity';
@@ -7,6 +13,9 @@ import { UserEntity } from './user.entity';
 export class ServiceEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
+
+  @CreateDateColumn()
+  created_at: Date;
 
   @Column()
   name: string;
@@ -24,5 +33,5 @@ export class ServiceEntity {
   price: number;
 
   @ManyToOne(() => UserEntity, (user) => user.id)
-  user: UserEntity;
+  user?: UserEntity;
 }
