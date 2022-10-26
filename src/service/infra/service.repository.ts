@@ -30,4 +30,9 @@ export class ServiceRepository {
       throw new InternalServerErrorException();
     }
   }
+
+  public async getServiceById(id: string): Promise<ServiceEntity> {
+    const matches = await this.serviceRepo.findOneBy({ id });
+    return matches;
+  }
 }
