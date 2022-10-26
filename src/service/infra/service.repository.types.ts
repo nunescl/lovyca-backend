@@ -9,3 +9,12 @@ export type SaveService = {
   price: number;
   user_id: string;
 };
+
+export type SaveUpdatedService = {
+  name?: string;
+  category?: ServiceCategoryEnum;
+  warranty?: number;
+  status?: ServiceStatusEnum;
+  price?: number;
+  user_id?: string;
+};
