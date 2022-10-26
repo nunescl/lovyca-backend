@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { DataSource, Repository } from 'typeorm';
 import { ServiceEntity } from '../entities/service.entity';
 import { SaveService } from './service.repository.types';
@@ -18,5 +18,16 @@ export class ServiceRepository {
     });
 
     return service;
+  }
+
+  public async getServices(): Promise<ServiceEntity[]> {
+    const query = this.serviceRepo.createQueryBuilder();
+
+    try {
+      const services: ServiceEntity[] = await query.getMany();
+      return services;
+    } catch (err) {
+      throw new InternalServerErrorException();
+    }
   }
 }
