@@ -11,9 +11,23 @@ import { DeleteServiceService } from './usecases/delete-service.usecase';
 import { GetServiceByIdService } from './usecases/get-service-by-id.usecase';
 import { GetServiceService } from './usecases/get-service.usecase';
 import { UpdateServiceService } from './usecases/update-service.usecase';
-
+import { PassportModule } from '@nestjs/passport';
+import { JwtModule } from '@nestjs/jwt';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 @Module({
-  imports: [TypeOrmModule.forFeature([ServiceRepository])],
+  imports: [
+    TypeOrmModule.forFeature([ServiceRepository]),
+    PassportModule.register({ defaultStrategy: 'jwt' }),
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => {
+        return {
+          secret: configService.get<string>('SECRET_KEY_FIREBASE'),
+        };
+      },
+      inject: [ConfigService],
+    }),
+  ],
   controllers: [
     CreateServiceController,
     GetServiceController,
