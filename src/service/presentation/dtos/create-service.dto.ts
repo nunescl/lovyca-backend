@@ -1,6 +1,6 @@
 import { ServiceCategoryEnum } from 'src/service/entities/service-category.enum';
 import { ServiceStatusEnum } from 'src/service/entities/service-status.enum';
-import { IsString, IsEnum, IsNotEmpty } from 'class-validator';
+import { IsString, IsEnum, IsNotEmpty, IsOptional } from 'class-validator';
 
 export class CreateServiceDto {
   @IsNotEmpty()
@@ -14,14 +14,14 @@ export class CreateServiceDto {
   @IsNotEmpty()
   warranty: number;
 
-  @IsNotEmpty()
-  @IsEnum(ServiceStatusEnum)
-  status: ServiceStatusEnum;
+  status?: ServiceStatusEnum;
 
   @IsNotEmpty()
   price: number;
 
   @IsNotEmpty()
-  @IsString()
-  user_id: string;
+  description: string;
+
+  @IsOptional()
+  user_id?: string;
 }

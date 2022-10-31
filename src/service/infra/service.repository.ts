@@ -1,5 +1,6 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { DataSource, Repository } from 'typeorm';
+import { ServiceStatusEnum } from '../entities/service-status.enum';
 import { ServiceEntity } from '../entities/service.entity';
 import { SaveService, SaveUpdatedService } from './service.repository.types';
 
@@ -12,10 +13,12 @@ export class ServiceRepository {
   }
 
   public async createService(saveService: SaveService): Promise<ServiceEntity> {
-    const service = this.serviceRepo.save({
+    const service = this.serviceRepo.create({
       ...saveService,
-      user: { id: saveService.user_id },
+      status: ServiceStatusEnum.ACTIVE,
     });
+
+    await this.serviceRepo.save(service);
 
     return service;
   }

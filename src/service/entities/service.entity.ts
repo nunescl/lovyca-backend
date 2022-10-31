@@ -32,6 +32,9 @@ export class ServiceEntity {
   @Column()
   price: number;
 
+  @Column()
+  description: string;
+
   @ManyToOne(() => UserEntity, (user) => user.id)
   user?: UserEntity;
 }
