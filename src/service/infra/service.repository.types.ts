@@ -5,9 +5,10 @@ export type SaveService = {
   name: string;
   category: ServiceCategoryEnum;
   warranty: number;
-  status: ServiceStatusEnum;
+  status?: ServiceStatusEnum;
   price: number;
-  user_id: string;
+  description: string;
+  user_id?: string;
 };
 
 export type SaveUpdatedService = {
@@ -16,5 +17,6 @@ export type SaveUpdatedService = {
   warranty?: number;
   status?: ServiceStatusEnum;
   price?: number;
+  description?: string;
   user_id?: string;
 };

@@ -1,7 +1,9 @@
-import { Controller, Delete, Param } from '@nestjs/common';
+import { Controller, Delete, Param, UseGuards } from '@nestjs/common';
+import { JwtWsAuthGuard } from 'src/service/infra/jwt-ws-auth.guard';
 import { DeleteServiceService } from 'src/service/usecases/delete-service.usecase';
 
 @Controller('service')
+@UseGuards(JwtWsAuthGuard)
 export class DeleteServiceController {
   constructor(private deleteServiceService: DeleteServiceService) {}
 

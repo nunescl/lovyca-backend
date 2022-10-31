@@ -22,6 +22,5 @@ export class UpdateServiceDto {
   price?: number;
 
   @IsOptional()
-  @IsString()
-  user_id?: string;
+  description?: string;
 }
