@@ -21,20 +21,22 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-Instruções para rodar o app:
+## Instruções para rodar o app:
 
-Backend:
+# Backend:
 
 - Usar o código 'docker compose up' para montar o container
 - Iniciar a aplicação com 'yarn start:dev'
 - App irá rodar na porta localhost:3000
 
-Frontend:
+# Frontend:
 
 - Iniciar a aplicação com 'yarn dev'
 - App irá rodar na porta localhost:3001
 
-Backend:
+## Informações
+
+#Backend:
 
 Sobre a arquitetura: Escolhi aplicar a Clean Architecture, por ser uma arquitetura independente e que facilita uma manutenção futura.
 
@@ -53,7 +55,7 @@ Melhorias:
 
 Requisitos não entregues: testes
 
-Frontend:
+#Frontend:
 
 Sobre a arquitetura: Usei a arquitetura padrão do NextJS
 
@@ -73,4 +75,6 @@ Melhorias:
 -Solucionar erro da página de login
 -Aumentar segurança
 
-Requisitos não entregues: tela de edit service
+Requisitos não entregues: 
+- tela de edit service
+- mecanismo de busca da tela home
